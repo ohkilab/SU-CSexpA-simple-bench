@@ -61,7 +61,7 @@ def benchmark(url, max_worker, max_time, global_end_time):
 
 
 def main():
-    url = "http://192.168.100.17:3000"
+    url = "{your-server-ip}" # Replace with your server address
     tags = [
         "dollfie",
         "folklore",
@@ -77,7 +77,7 @@ def main():
 
     max_worker = 5  # Number of concurrent threads
     max_time = 500
-    max_time_per_tag = 50  # Duration in seconds
+    max_time_per_tag = 60  # Duration in seconds
 
     start_time = time.time()
     end_time = start_time + max_time
