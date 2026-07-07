@@ -60,34 +60,36 @@ def benchmark(url, max_worker, max_time, global_end_time):
     return completed_requests, elapsed_time
 
 
+def build_request_url(base_url, query):
+    separator = "&" if "?" in base_url else "?"
+    return f"{base_url}{separator}{query}"
+
+
 def main():
-    url = "{your-server-ip}" # Replace with your server address
-    tags = [
-        "dollfie",
-        "folklore",
-        "kudus",
-        "midcity",
-        "partidadiscoteca26812",
-        "lis",
-        "gnimocemoh",
-        "cabaret",
-        "margarita",
-        "bottles",
+    url = "http://{your-server-ip}" # Replace with your server address
+    queries = [
+        "sortOrder=desc&tag=dollfie",
+        "sortOrder=asc&tag=folklore",
+        "sortOrder=desc&tag=kudus&tag=midcity&tagOperator=or",
+        "sortOrder=asc&tag=partidadiscoteca26812&tag=lis&tagOperator=and",
+        "sortOrder=desc&tag=gnimocemoh",
+        "sortOrder=asc&tag=cabaret",
+        "sortOrder=desc&tag=margarita&tag=bottles&tagOperator=or",
     ]
 
     max_worker = 5  # Number of concurrent threads
     max_time = 500
-    max_time_per_tag = 60  # Duration in seconds
+    max_time_per_query = 60  # Duration in seconds
 
     start_time = time.time()
     end_time = start_time + max_time
 
     # print(f"global start time: {time.time()}, end_time: {end_time}")
 
-    for tag in tags:
-        req_url = f"{url}/?tag={tag}"
+    for query in queries:
+        req_url = build_request_url(url, query)
 
-        results = benchmark(req_url, max_worker, max_time_per_tag, end_time)
+        results = benchmark(req_url, max_worker, max_time_per_query, end_time)
         print(f"score: {results[0]/results[1]}")
         # print(f"Completed requests: {results[0]}, Elapsed time: {results[1]} seconds")
         # print(f"now: {time.time()}\n")

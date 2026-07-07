@@ -2,10 +2,6 @@
 
 簡易用のベンチマークプログラムです。スコア算出方法はベンチマークプログラムに準拠していますが、あくまで簡易用であり、算出されるスコアは正確なスコアとは異なる可能性があることを留意してください。
 
-正確なスコアは以下を参照してください
-
-https://github.com/ohkilab/SU-CSexpA-benchmark-system
-
 **できること**
 
 - スコア計測
@@ -18,6 +14,11 @@ https://github.com/ohkilab/SU-CSexpA-benchmark-system
 ## requirements
 
 - python
+  - requests
+
+```shell
+pip install requests
+```
 
 ## run
 
